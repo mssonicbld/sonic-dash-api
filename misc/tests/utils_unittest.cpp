@@ -26,17 +26,29 @@ TEST(Utils, ValidUrlConversion)
         {"sonic/dash.acl_rule.AclRule", "DASH_ACL_RULE_TABLE"},
         {"sonic/dash.appliance.Appliance", "DASH_APPLIANCE_TABLE"},
         {"sonic/dash.eni.Eni", "DASH_ENI_TABLE"},
+        {"sonic/dash.eni_route.EniRoute", "DASH_ENI_ROUTE_TABLE"},
         {"sonic/dash.meter_policy.MeterPolicy", "DASH_METER_POLICY_TABLE"},
         {"sonic/dash.meter_rule.MeterRule", "DASH_METER_RULE_TABLE"},
         {"sonic/dash.meter.Meter", "DASH_METER_TABLE"},
+        {"sonic/dash.pa_validation.PaValidation", "DASH_PA_VALIDATION_TABLE"},
         {"sonic/dash.prefix_tag.PrefixTag", "DASH_PREFIX_TAG_TABLE"},
         {"sonic/dash.qos.Qos", "DASH_QOS_TABLE"},
+        {"sonic/dash.route_group.RouteGroup", "DASH_ROUTE_GROUP_TABLE"},
         {"sonic/dash.route_rule.RouteRule", "DASH_ROUTE_RULE_TABLE"},
         {"sonic/dash.route_type.RouteType", "DASH_ROUTE_TYPE_TABLE"},
         {"sonic/dash.route.Route", "DASH_ROUTE_TABLE"},
         {"sonic/dash.routing_appliance.RoutingAppliance", "DASH_ROUTING_APPLIANCE_TABLE"},
+        {"sonic/dash.tunnel.Tunnel", "DASH_TUNNEL_TABLE"},
         {"sonic/dash.vnet_mapping.VnetMapping", "DASH_VNET_MAPPING_TABLE"},
         {"sonic/dash.vnet.Vnet", "DASH_VNET_TABLE"},
+        {"sonic/dash.ha_scope.HaScope", "DASH_HA_SCOPE_TABLE"},
+        {"sonic/dash.ha_set.HaSet", "DASH_HA_SET_TABLE"},
+        {"sonic/dash.ha_set_config.HaSetConfig", "DASH_HA_SET_CONFIG_TABLE"},
+        {"sonic/dash.ha_scope_config.HaScopeConfig", "DASH_HA_SCOPE_CONFIG_TABLE"},
+        {"sonic/dash.ha_set_state.HaSetState", "DASH_HA_SET_STATE_TABLE"},
+        {"sonic/dash.ha_scope_state.HaScopeState", "DASH_HA_SCOPE_STATE_TABLE"},
+        {"sonic/dash.outbound_port_map.OutboundPortMap", "DASH_OUTBOUND_PORT_MAP_TABLE"},
+        {"sonic/dash.outbound_port_map_range.OutboundPortMapRange", "DASH_OUTBOUND_PORT_MAP_RANGE_TABLE"}
     };
     set<string> ignore_files = {
         "types.proto"
@@ -97,7 +109,8 @@ TEST(Utils, CInterface)
 
     const std::string json_str1 = 
     "{\n"
-    " \"action_type\": \"ROUTING_TYPE_VNET\",\n"
+    " \"action_type\": \"ROUTING_TYPE_UNSPECIFIED\",\n"
+    " \"routing_type\": \"ROUTING_TYPE_VNET\",\n"
     " \"vnet\": \"Vnet2\"\n"
     "}\n";
 
@@ -115,7 +128,12 @@ TEST(Utils, CInterface)
     " \"sip\": {\n"
     "  \"ipv4\": 16777482\n"
     " },\n"
-    " \"vm_vni\": 4321\n"
+    " \"vm_vni\": 4321,\n"
+    " \"local_region_id\": 100,\n"
+    " \"trusted_vnis\": {\n"
+    "  \"value\": 100\n"
+    " },\n"
+    " \"outbound_direction_lookup\": \"dst_mac\"\n"
     "}\n";
 
     binary_size = 0;
